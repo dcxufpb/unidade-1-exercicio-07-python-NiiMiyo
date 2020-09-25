@@ -83,8 +83,8 @@ def test_loja_completa():
 
 def test_nome_vazio():
     verifica_campo_obrigatorio_param(
-        "O campo logradouro do endereço é obrigatório",
-        None,
+        "O campo nome da loja é obrigatório",
+        "",
         LOGRADOURO,
         NUMERO,
         COMPLEMENTO,
@@ -103,7 +103,7 @@ def test_logradouro_vazio():
     verifica_campo_obrigatorio_param(
         "O campo logradouro do endereço é obrigatório",
         NOME_LOJA,
-        None,
+        "",
         NUMERO,
         COMPLEMENTO,
         BAIRRO,
@@ -161,7 +161,7 @@ def test_sem_complemento():
             NOME_LOJA,
             LOGRADOURO,
             NUMERO,
-            None,
+            "",
             BAIRRO,
             MUNICIPIO,
             ESTADO,
@@ -191,7 +191,7 @@ def test_sem_bairro():
             LOGRADOURO,
             NUMERO,
             COMPLEMENTO,
-            None,
+            "",
             MUNICIPIO,
             ESTADO,
             CEP,
@@ -206,32 +206,32 @@ def test_sem_bairro():
 
 def test_municipio_vazio():
     verifica_campo_obrigatorio_param("O campo município do endereço é obrigatório", NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            "",
-            ESTADO,
-            CEP,
-            TELEFONE,
-            OBSERVACAO,
-            CNPJ,
-            INSCRICAO_ESTADUAL)
+                                     LOGRADOURO,
+                                     NUMERO,
+                                     COMPLEMENTO,
+                                     BAIRRO,
+                                     "",
+                                     ESTADO,
+                                     CEP,
+                                     TELEFONE,
+                                     OBSERVACAO,
+                                     CNPJ,
+                                     INSCRICAO_ESTADUAL)
 
 
 def test_estado_vazio():
     verifica_campo_obrigatorio_param("O campo estado do endereço é obrigatório", NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            "",
-            CEP,
-            TELEFONE,
-            OBSERVACAO,
-            CNPJ,
-            INSCRICAO_ESTADUAL)
+                                     LOGRADOURO,
+                                     NUMERO,
+                                     COMPLEMENTO,
+                                     BAIRRO,
+                                     MUNICIPIO,
+                                     "",
+                                     CEP,
+                                     TELEFONE,
+                                     OBSERVACAO,
+                                     CNPJ,
+                                     INSCRICAO_ESTADUAL)
 
 
 TEXTO_ESPERADO_SEM_CEP = """Loja 1
@@ -245,17 +245,17 @@ IE: 123456789"""
 
 def test_sem_cep():
     assert cupom.dados_loja_param(NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            ESTADO,
-            None,
-            TELEFONE,
-            OBSERVACAO,
-            CNPJ,
-            INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_CEP
+                                  LOGRADOURO,
+                                  NUMERO,
+                                  COMPLEMENTO,
+                                  BAIRRO,
+                                  MUNICIPIO,
+                                  ESTADO,
+                                  "",
+                                  TELEFONE,
+                                  OBSERVACAO,
+                                  CNPJ,
+                                  INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_CEP
 
 
 TEXTO_ESPERADO_SEM_TELEFONE = """Loja 1
@@ -269,17 +269,17 @@ IE: 123456789"""
 
 def test_sem_telefone():
     assert cupom.dados_loja_param(NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            ESTADO,
-            CEP,
-            None,
-            OBSERVACAO,
-            CNPJ,
-            INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_TELEFONE
+                                  LOGRADOURO,
+                                  NUMERO,
+                                  COMPLEMENTO,
+                                  BAIRRO,
+                                  MUNICIPIO,
+                                  ESTADO,
+                                  CEP,
+                                  "",
+                                  OBSERVACAO,
+                                  CNPJ,
+                                  INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_TELEFONE
 
 
 TEXTO_ESPERADO_SEM_OBSERVACAO = """Loja 1
@@ -293,68 +293,76 @@ IE: 123456789"""
 
 def test_sem_observacao():
     assert cupom.dados_loja_param(NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            ESTADO,
-            CEP,
-            TELEFONE,
-            None,
-            CNPJ,
-            INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_OBSERVACAO
+                                  LOGRADOURO,
+                                  NUMERO,
+                                  COMPLEMENTO,
+                                  BAIRRO,
+                                  MUNICIPIO,
+                                  ESTADO,
+                                  CEP,
+                                  TELEFONE,
+                                  "",
+                                  CNPJ,
+                                  INSCRICAO_ESTADUAL) == TEXTO_ESPERADO_SEM_OBSERVACAO
 
 
 def test_cnpj_vazio():
     verifica_campo_obrigatorio_param("O campo CNPJ da loja é obrigatório", NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            ESTADO,
-            CEP,
-            TELEFONE,
-            OBSERVACAO,
-            "",
-            INSCRICAO_ESTADUAL)
+                                     LOGRADOURO,
+                                     NUMERO,
+                                     COMPLEMENTO,
+                                     BAIRRO,
+                                     MUNICIPIO,
+                                     ESTADO,
+                                     CEP,
+                                     TELEFONE,
+                                     OBSERVACAO,
+                                     "",
+                                     INSCRICAO_ESTADUAL)
 
 
 def test_inscricao_estadual_vazia():
     verifica_campo_obrigatorio_param("O campo inscrição estadual da loja é obrigatório", NOME_LOJA,
-            LOGRADOURO,
-            NUMERO,
-            COMPLEMENTO,
-            BAIRRO,
-            MUNICIPIO,
-            ESTADO,
-            CEP,
-            TELEFONE,
-            OBSERVACAO,
-            CNPJ,
-            "")
+                                     LOGRADOURO,
+                                     NUMERO,
+                                     COMPLEMENTO,
+                                     BAIRRO,
+                                     MUNICIPIO,
+                                     ESTADO,
+                                     CEP,
+                                     TELEFONE,
+                                     OBSERVACAO,
+                                     CNPJ,
+                                     "")
 
 
 def test_exercicio2_customizado():
 
     # Defina seus próprios valores para as variáveis a seguir
-    nome_loja = ""
-    logradouro = ""
-    numero = 0
-    complemento = ""
-    bairro = ""
-    municipio = ""
-    estado = ""
-    cep = ""
-    telefone = ""
-    observacao = ""
-    cnpj = ""
-    inscricao_estadual = ""
+    nome_loja = "Top 10 nomes de lojas"
+    logradouro = "Rua Tchurusbango Tchurusmago"
+    numero = 13
+    complemento = "Do lado da casa vizinha"
+    bairro = "Bairro do Limoeiro"
+    municipio = "São Paulo"
+    estado = "SP"
+    cep = "08090-284"
+    telefone = "(11) 4002-8922"
+    observacao = "Entre o Campinho e a Lua de Baixo"
+    cnpj = "43.745.249/0001-39"
+    inscricao_estadual = "564.213.199.866"
+
+    expected = "Top 10 nomes de lojas\n"
+    expected += "Rua Tchurusbango Tchurusmago, 13 Do lado da casa vizinha\n"
+    expected += "Bairro do Limoeiro - São Paulo - SP\n"
+    expected += "CEP:08090-284 Tel (11) 4002-8922\n"
+    expected += "Entre o Campinho e a Lua de Baixo\n"
+    expected += "CNPJ: 43.745.249/0001-39\n"
+    expected += "IE: 564.213.199.866"
 
     # E atualize o texto esperado abaixo
     assert (
-        cupom.dados_loja_param(nome_loja, logradouro, numero, complemento, bairro, municipio, estado, cep, telefone, observacao, cnpj, inscricao_estadual)
-        == """
-"""
+        cupom.dados_loja_param(nome_loja, logradouro, numero, complemento, bairro,
+                               municipio, estado, cep, telefone, observacao, cnpj, inscricao_estadual)
+        == expected
     )
